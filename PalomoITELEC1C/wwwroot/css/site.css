@@ -45,3 +45,7 @@ p {
         background-color: #131313;
         color: white;
     }
+table, th, td {
+    border: 1px solid;
+    padding-right: 50px;
+}
