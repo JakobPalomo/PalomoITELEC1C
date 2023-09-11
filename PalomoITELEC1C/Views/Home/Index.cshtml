@@ -1,9 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     DateTime date = DateTime.Now;
+
+   
     
 }
-
+@model IEnumerable<Student>;
 <div class="text-center">
  
     <div class="text-center">
@@ -28,5 +30,26 @@
 
             <p>It is currently @period on @formattedDate</p>
         }
+
+        @* <table>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    @ViewBag.student.Id</td>
+            </tr>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    @ViewBag.student.FirstName @ViewBag.student.LastName
+                </td>
+            </tr>
+        </table> *@
+
+        
+        
     </div>
 </div>
