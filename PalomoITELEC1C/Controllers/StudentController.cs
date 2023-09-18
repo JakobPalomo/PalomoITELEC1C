@@ -26,15 +26,6 @@ namespace PalomoITELEC1C.Controllers
 
         public IActionResult Student()
         {
-            //var st = new Student();
-            //st.Id = 1;
-            //st.FirstName = "Palomo";
-            //st.LastName = "Jakob Michael";
-            //st.Birthday = DateTime.Now;
-            //st.email = "palomo@gmail.com";
-            //st.Major = Major.BSIT;
-
-            //ViewBag.student = st;
 
             return View(StudentList);
         }
@@ -48,6 +39,36 @@ namespace PalomoITELEC1C.Controllers
 
             return NotFound();
         }
+        [HttpGet]
+        public IActionResult EditStud(int id)
+        {
+            //Search for the student whose id matches the given id
+            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was an student found?
+                return View(student);
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult EditStud(Student studentChange)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+            if (student != null)
+            {
+                student.Id = studentChange.Id;
+                student.FirstName = studentChange.FirstName;
+                student.LastName = studentChange.LastName;
+                student.Birthday = studentChange.Birthday;
+                student.Major = studentChange.Major;
+                student.Email = studentChange.Email;
+               
+            }
+
+            return View("Student", StudentList);
+        }
+
         [HttpGet]
         public IActionResult AddStudent()
         {

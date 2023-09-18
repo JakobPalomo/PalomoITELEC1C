@@ -51,7 +51,7 @@
     }
 }
 <h1>Hello @Name here are your grades</h1>
-<a class="btn btn-primary" asp-action="AddStudent">Add Student</a>
+
 <table>
     <tr>
         <td>Name</td>
@@ -85,6 +85,7 @@
         <th>Birthday</th>
         <th>Major</th>
         <th>Details</th>
+        <th>Edit</th>
     </tr>
 
     @foreach (var student in Model)
@@ -95,6 +96,9 @@
             <td>@student.Birthday</td>
             <td>@student.Major</td>
             <td> <a asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a> </td>
+            <td> <a class="btn btn-primary" asp-action="EditStud" asp-route-id="@student.Id">Edit</a> </td>
         </tr>
     }
 </table>
+<a class="btn btn-primary" asp-action="AddStudent">Add Student</a>
+<br />

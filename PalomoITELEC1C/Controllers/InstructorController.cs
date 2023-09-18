@@ -57,5 +57,34 @@ namespace PalomoITELEC1C.Controllers
             InstructorList.Add(newInstructor);
             return View("Instructor", InstructorList);
         }
+        [HttpGet]
+        public IActionResult EditInst(int id)
+        {
+            //Search for the student whose id matches the given id
+            Instructor? instructor = InstructorList.FirstOrDefault(st => st.Id == id);
+
+            if (instructor != null)//was an student found?
+                return View(instructor);
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult EditStud(Instructor studentChange)
+        {
+            Instructor? instructor= InstructorList.FirstOrDefault(st => st.Id == studentChange.Id);
+            if (instructor != null)
+            {
+                instructor.Id = studentChange.Id;
+                instructor.FirstName = studentChange.FirstName;
+                instructor.LastName = studentChange.LastName;
+                instructor.Rank = studentChange.Rank;
+                instructor.IsTenured = studentChange.IsTenured;
+                instructor.HiringDate = studentChange.HiringDate;
+
+            }
+
+            return View("Instructor", InstructorList);
+        }
     }
 }

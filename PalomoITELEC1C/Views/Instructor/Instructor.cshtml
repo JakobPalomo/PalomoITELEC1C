@@ -4,7 +4,7 @@
 @{
 }
 <h1>Instructors</h1>
-<a class="btn btn-primary" asp-action="AddInstructor">Add Instructor</a>
+
 <table class="table">
     <tr>
         <th>Id</th>
@@ -13,6 +13,7 @@
         <th>Rank</th>
         <th>Hiring Date</th>
         <th>Show Details</th>
+        <th>Edit</th>
     </tr>
 
     @foreach (var instructor in Model)
@@ -24,6 +25,9 @@
             <td>@instructor.Rank</td>
             <td>@instructor.HiringDate</td>
             <td> <a asp-action="ShowDetail" asp-route-id="@instructor.Id">Show Details</a> </td>
+            <td> <a class="btn btn-primary" asp-action="EditInst" asp-route-id="@instructor.Id">edit</a> </td>
         </tr>
     }
 </table>
+<a class="btn btn-primary" asp-action="AddInstructor">Add Instructor</a>
+<br />
