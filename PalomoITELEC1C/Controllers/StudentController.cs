@@ -9,10 +9,10 @@ namespace PalomoITELEC1C.Controllers
             new Student()
                 {
                     Id= 1,FirstName="Jakob",
-                LastName="Palomo",
-                Birthday=DateTime.Parse("12/08/2002"),
-                Major=Major.BSIT,
-                Email="jakob@gmail.com"
+                    LastName="Palomo",
+                    Birthday=DateTime.Parse("12/08/2002"),
+                    Major=Major.BSIT,
+                    Email="jakob@gmail.com"
             },
             new Student()
                 {
@@ -48,6 +48,19 @@ namespace PalomoITELEC1C.Controllers
 
             return NotFound();
         }
+        [HttpGet]
+        public IActionResult AddStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddStudent(Student newStudent)
+        {
+
+            StudentList.Add(newStudent);
+            return View("Student",StudentList);
+        }
 
     }
+    
 }

@@ -4,6 +4,7 @@
 @{
 }
 <h1>Instructors</h1>
+<a class="btn btn-primary" asp-action="AddInstructor">Add Instructor</a>
 <table class="table">
     <tr>
         <th>Id</th>
@@ -11,7 +12,7 @@
         <th>Tenured</th>
         <th>Rank</th>
         <th>Hiring Date</th>
-        
+        <th>Show Details</th>
     </tr>
 
     @foreach (var instructor in Model)

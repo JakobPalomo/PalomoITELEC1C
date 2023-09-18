@@ -13,10 +13,6 @@
         public Rank Rank { get; set; }
         public DateTime HiringDate { get; set; }
 
-        //Id
-        //FirstName
-        //LastName
-        //IsTenured
-        //Rank 
+        
     }
 }
