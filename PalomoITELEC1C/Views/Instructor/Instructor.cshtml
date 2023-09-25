@@ -14,6 +14,7 @@
         <th>Hiring Date</th>
         <th>Show Details</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var instructor in Model)
@@ -26,6 +27,7 @@
             <td>@instructor.HiringDate</td>
             <td> <a asp-action="ShowDetail" asp-route-id="@instructor.Id">Show Details</a> </td>
             <td> <a class="btn btn-primary" asp-action="EditInst" asp-route-id="@instructor.Id">edit</a> </td>
+            <td> <a class="btn btn-danger" asp-action="Delete" asp-route-id="@instructor.Id">delete</a> </td>
         </tr>
     }
 </table>

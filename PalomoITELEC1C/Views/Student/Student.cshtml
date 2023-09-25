@@ -86,6 +86,7 @@
         <th>Major</th>
         <th>Details</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var student in Model)
@@ -97,6 +98,7 @@
             <td>@student.Major</td>
             <td> <a asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a> </td>
             <td> <a class="btn btn-primary" asp-action="EditStud" asp-route-id="@student.Id">Edit</a> </td>
+            <td> <a class="btn btn-danger" asp-action="Delete" asp-route-id="@student.Id">Delete</a> </td>
         </tr>
     }
 </table>
