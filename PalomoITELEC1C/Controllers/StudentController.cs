@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PalomoITELEC1C.Data;
 using PalomoITELEC1C.Models;
 using PalomoITELEC1C.Services;
 using System.Reflection.Metadata;
@@ -8,21 +9,21 @@ namespace PalomoITELEC1C.Controllers
     public class StudentController : Controller
     {
 
-        private readonly IMyFakeDataService _fakeData;
-        public StudentController(IMyFakeDataService fakeData)
+        private readonly AppDbContext _dbContext;
+        public StudentController(AppDbContext dbContext)
         {
-            _fakeData = fakeData;
+            _dbContext = dbContext;
         }
 
         public IActionResult Student()
         {
 
-            return View(_fakeData.StudentList);
+            return View(_dbContext.Students);
         }
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -33,7 +34,7 @@ namespace PalomoITELEC1C.Controllers
         public IActionResult EditStud(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -44,7 +45,7 @@ namespace PalomoITELEC1C.Controllers
         [HttpPost]
         public IActionResult EditStud(Student studentChange)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == studentChange.Id);
             if (student != null)
             {
                 student.Id = studentChange.Id;
@@ -55,6 +56,7 @@ namespace PalomoITELEC1C.Controllers
                 student.Email = studentChange.Email;
                
             }
+            _dbContext.SaveChanges();
 
             return RedirectToAction("Student");
         }
@@ -68,14 +70,15 @@ namespace PalomoITELEC1C.Controllers
         public IActionResult AddStudent(Student newStudent)
         {
 
-            _fakeData.StudentList.Add(newStudent);
+            _dbContext.Students.Add(newStudent);
+            _dbContext.SaveChanges();
             return RedirectToAction("Student");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(student => student.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(student => student.Id == id);
             if (student != null)//was an student found?
                 return View(student);
            
@@ -86,8 +89,9 @@ namespace PalomoITELEC1C.Controllers
         [HttpPost]
         public IActionResult Delete(Student delStudent)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == delStudent.Id);
-            _fakeData.StudentList.Remove(student);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == delStudent.Id);
+            _dbContext.Students.Remove(student);
+            _dbContext.SaveChanges();
             return RedirectToAction("Student");
 
         }

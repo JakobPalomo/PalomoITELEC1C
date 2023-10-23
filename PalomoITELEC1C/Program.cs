@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PalomoITELEC1C.Data;
 using PalomoITELEC1C.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<IMyFakeDataService, MyFakeDataService>();
+//builder.Services.AddSingleton<IMyFakeDataService, MyFakeDataService>();
+//For database
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -17,6 +21,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
+context.Database.EnsureCreated();
+
 app.UseStaticFiles();
 
 app.UseRouting();
