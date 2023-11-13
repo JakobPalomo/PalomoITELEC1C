@@ -43,6 +43,7 @@ namespace PalomoITELEC1C.Data
                     FirstName = "Jakob",
                     LastName = "Palomo",
                     IsTenured = true,
+                    Phone="00-3333-3333",
                     Rank = Rank.Professor,
                     HiringDate = DateTime.Parse("05/05/2023")
                 },
@@ -52,6 +53,7 @@ namespace PalomoITELEC1C.Data
                     FirstName = "Zeke",
                     LastName = "Gonzalez",
                     IsTenured = true,
+                    Phone = "00-3333-3333",
                     Rank = Rank.AssistantProfessor,
                     HiringDate = DateTime.Parse("05/05/2023")
                 }

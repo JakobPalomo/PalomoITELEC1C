@@ -34,11 +34,14 @@ namespace PalomoITELEC1C.Controllers
         [HttpGet]
         public IActionResult AddInstructor()
         {
+            
             return View();
         }
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
-        {
+        {   if (!ModelState.IsValid) {
+                return View(); }
+                
 
             _dbContext.Instructors.Add(newInstructor);
             _dbContext.SaveChanges();
@@ -69,6 +72,7 @@ namespace PalomoITELEC1C.Controllers
                 instructor.Rank = studentChange.Rank;
                 instructor.IsTenured = studentChange.IsTenured;
                 instructor.HiringDate = studentChange.HiringDate;
+                instructor.Phone = studentChange.Phone;
 
             }
             _dbContext.SaveChanges();
