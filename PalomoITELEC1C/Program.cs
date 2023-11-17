@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PalomoITELEC1C.Data;
 using PalomoITELEC1C.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 //For database
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDefaultIdentity<User>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredLength = 8;
+    options.User.RequireUniqueEmail = true;
+
+}).AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
@@ -29,6 +42,8 @@ context.Database.EnsureCreated();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

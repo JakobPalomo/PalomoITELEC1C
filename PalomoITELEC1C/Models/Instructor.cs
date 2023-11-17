@@ -24,6 +24,7 @@ namespace PalomoITELEC1C.Models
         [Display(Name = "Is Tenured?")]
         public bool IsTenured { get; set; }
 
+        [Required]
         [Display(Name = "Current Rank")]
         public Rank Rank { get; set; }
 

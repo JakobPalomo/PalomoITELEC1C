@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PalomoITELEC1C.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace PalomoITELEC1C.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

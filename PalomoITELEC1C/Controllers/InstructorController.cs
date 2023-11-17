@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PalomoITELEC1C.Data;
 using PalomoITELEC1C.Models;
 using PalomoITELEC1C.Services;
@@ -13,7 +14,7 @@ namespace PalomoITELEC1C.Controllers
             _dbContext = dbContext;
         }
 
-
+       
         public IActionResult Instructor()
         {
 
